@@ -52,11 +52,14 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 6.1.0'
 
+  gem 'factory_bot_rails'
+
   gem 'bundler-audit'
 
   gem 'brakeman'
 
   gem 'rubocop', require: false
+  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 end
