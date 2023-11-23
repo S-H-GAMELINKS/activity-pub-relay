@@ -295,6 +295,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.2)
   redis (>= 4.0.1)
+  rspec-core
   rspec-rails (~> 6.1.0)
   rubocop
   rubocop-factory_bot
