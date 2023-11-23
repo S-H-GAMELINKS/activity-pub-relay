@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get '/.well-known/webfinger', to: 'webfinger#show'
 
-  mount Sidekiq::Web => "/sidekiq"
+  mount Sidekiq::Web => '/sidekiq'
 
   # Defines the root path route ("/")
   # root "posts#index"
