@@ -248,6 +248,8 @@ GEM
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    saharspec (0.0.10)
+      ruby2_keywords
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -293,11 +295,13 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.2)
   redis (>= 4.0.1)
+  rspec-core
   rspec-rails (~> 6.1.0)
   rubocop
   rubocop-factory_bot
   rubocop-rails
   rubocop-rspec
+  saharspec
   sprockets-rails
   stimulus-rails
   turbo-rails
