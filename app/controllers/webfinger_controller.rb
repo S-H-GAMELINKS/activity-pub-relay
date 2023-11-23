@@ -3,7 +3,7 @@
 # :nodoc:
 class WebfingerController < ApplicationController
   def show
-    render json: {
+    render content_type: 'application/activity+json', json: {
       subject: acct,
       links: [{
         rel: 'self',

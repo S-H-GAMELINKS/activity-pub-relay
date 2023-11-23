@@ -12,6 +12,7 @@ describe '/.well-known/webfinger endpoint' do
   end
 
   it 'return json' do
+    expect(response.content_type).to eq('application/activity+json; charset=utf-8')
     expect(response.body).to be_json_sym(
       subject: 'acct:relay@localhost:3000',
       links: [
