@@ -3,12 +3,12 @@
 # :nodoc:
 class WebfingerController < ApplicationController
   def show
-    render json: {
+    render content_type: 'application/activity+json', json: {
       subject: acct,
       links: [{
         rel: 'self',
         type: 'application/activity+json',
-        href: '' # TODO: set actor endpoint
+        href: actor_url
       }]
     }
   end
