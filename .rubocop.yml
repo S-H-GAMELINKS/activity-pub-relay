@@ -359,6 +359,8 @@ RSpec/Eq:
   Enabled: true
 RSpec/ExcessiveDocstringSpacing:
   Enabled: true
+RSpec/ExampleLength:
+  Max: 50
 RSpec/IdenticalEqualityAssertion:
   Enabled: true
 RSpec/IndexedLet:
