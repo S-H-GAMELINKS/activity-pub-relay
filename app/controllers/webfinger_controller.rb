@@ -8,7 +8,7 @@ class WebfingerController < ApplicationController
       links: [{
         rel: 'self',
         type: 'application/activity+json',
-        href: '' # TODO: set actor endpoint
+        href: actor_url
       }]
     }
   end

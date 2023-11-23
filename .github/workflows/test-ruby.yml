@@ -32,6 +32,9 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
 
+      - name: Generate key
+        run bundle exec rake relay:keygen
+
       - name: Run tests
         run: bundle exec rspec
 

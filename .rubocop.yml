@@ -405,3 +405,7 @@ Metrics/BlockLength:
   Exclude:
     - config/environments/*
   Max: 50
+Metrics/MethodLength:
+  Max: 40
+Style/ClassVars:
+  Enabled: false
