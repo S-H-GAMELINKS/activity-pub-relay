@@ -3,6 +3,17 @@
 # :nodoc:
 class InboxesController < ApplicationController
   def create
-    render plain: 'OK', status: :accepted
+    account = SignatureVerification.call(request)
+    if !account && blocked_domain?
+      render plain: 'not accepted', status: :unauthorized
+    else
+      render plain: 'accepted', status: :accepted
+    end
+  end
+
+  private
+
+  def blocked_domain?
+    Block.exists?(domain: params[:domain])
   end
 end
