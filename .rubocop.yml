@@ -409,3 +409,7 @@ Metrics/MethodLength:
   Max: 40
 Style/ClassVars:
   Enabled: false
+Lint/StructNewOverride:
+  Enabled: false
+Layout/LineLength:
+  Max: 350
