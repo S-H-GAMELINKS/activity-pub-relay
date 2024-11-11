@@ -16,7 +16,7 @@ class WebfingerControllerTest < ActionDispatch::IntegrationTest
         {
           "rel" => "self",
           "type" => "application/activity+json",
-          "href" => ""
+          "href" => "http://www.example.com/actor"
         }
       ]
     }
