@@ -24,4 +24,8 @@ class WebfingerControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal expected_json, response_json
   end
+
+  test "return content-type is 'application/activity+json'" do
+    assert_equal "application/activity+json; charset=utf-8", response.content_type
+  end
 end

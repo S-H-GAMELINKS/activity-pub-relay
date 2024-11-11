@@ -7,7 +7,7 @@ class WebfingerController < ApplicationController
         type: "application/activity+json",
         href: "" # TODO: set actor endpoint
       } ]
-    }
+    }, content_type: "application/activity+json"
   end
 
   private
