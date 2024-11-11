@@ -4,6 +4,7 @@ class WebfingerControllerTest < ActionDispatch::IntegrationTest
   setup do
     get "/.well-known/webfinger"
   end
+
   test "return http success" do
     assert_response :success
   end
