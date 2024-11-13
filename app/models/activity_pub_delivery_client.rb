@@ -23,7 +23,7 @@ class ActivityPubDeliveryClient
   private
 
   def actor_url
-   "#{ENV.fetch('DOMAIN') { "localhost:#{ENV.fetch('PORT', 3000)}" } }"
+    "https://www.example.com/actor"
   end
 
   def url
