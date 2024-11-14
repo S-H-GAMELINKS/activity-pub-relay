@@ -10,5 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 0) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_14_142516) do
+  create_table "subscribe_servers", force: :cascade do |t|
+    t.string "domain", default: "", null: false
+    t.string "inbox_url", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_subscribe_servers_on_domain", unique: true
+  end
 end
