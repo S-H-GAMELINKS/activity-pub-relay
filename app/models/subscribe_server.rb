@@ -1,0 +1,2 @@
+class SubscribeServer < ApplicationRecord
+end

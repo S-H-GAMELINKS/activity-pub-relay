@@ -2,7 +2,9 @@ class ServerFollowHandler
   def call(actor, json)
     inbox_url = actor["endpoints"].is_a?(Hash) && actor["endpoints"]["sharedInbox"].present? ? actor["endpoints"]["sharedInbox"] : actor["inbox"]
 
-    actor_host = URI.parse(actor["id"]).normalize.host
+    domain = URI.parse(actor["id"]).normalize.host
+
+    SubscribeServer.create!(domain:, inbox_url:)
 
     accept_activity = {
       "@context": [
@@ -24,6 +26,10 @@ class ServerFollowHandler
 
     Rails.logger.info "################################################################"
     Rails.logger.info "#{response.code}: #{response.body}"
+    Rails.logger.info "################################################################"
+  rescue ActiveRecord::Invalid
+    Rails.logger.info "################################################################"
+    Rails.logger.info "SubscribeServer can not save"
     Rails.logger.info "################################################################"
   end
 end
