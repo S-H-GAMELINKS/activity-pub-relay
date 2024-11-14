@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe ActivityPubDeliveryClient, type: :model do
   describe "#send" do
     before do
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with("LOCAL_DOMAIN", "www.example.com").and_return("www.example.com")
       allow_any_instance_of(ActivityPubDeliveryClient).to receive(:digest).and_return("SHA-256=ijFumwSM5G2o89u2t9AwyGKnT5RVRtf8W88Gg1f7Cqo=")
     end
 

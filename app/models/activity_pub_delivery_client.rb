@@ -23,7 +23,7 @@ class ActivityPubDeliveryClient
   private
 
   def actor_url
-    "https://www.example.com/actor"
+    "https://#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}/actor"
   end
 
   def url

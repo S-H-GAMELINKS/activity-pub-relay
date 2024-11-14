@@ -3,6 +3,9 @@ require "rails_helper"
 RSpec.describe "/.well-known/webfinger", type: :request do
   describe "GET /.well-known/webfinger" do
     before do
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with("LOCAL_DOMAIN", "www.example.com").and_return("www.example.com")
+
       get "/.well-known/webfinger"
     end
 
