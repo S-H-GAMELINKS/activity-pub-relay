@@ -24,8 +24,16 @@ class SignatureVerificater
 
     if key_from_account(account).verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
       account
+    elsif account.possibly_stale?
+      account = account.refresh!
+
+      if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
+        account
+      else
+        nil
+      end
     else
-      account
+      nil
     end
   end
 

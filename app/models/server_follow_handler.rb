@@ -24,12 +24,8 @@ class ServerFollowHandler
 
     response = ActivityPubDeliveryClient.new(inbox_url, accept_activity).send
 
-    Rails.logger.info "################################################################"
     Rails.logger.info "#{response.code}: #{response.body}"
-    Rails.logger.info "################################################################"
-  rescue ActiveRecord::Invalid
-    Rails.logger.info "################################################################"
-    Rails.logger.info "SubscribeServer can not save"
-    Rails.logger.info "################################################################"
+  rescue ActiveRecord::RecordInvalid => e
+    Rails.logger.error e.full_messages
   end
 end
