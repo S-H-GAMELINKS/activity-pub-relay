@@ -50,7 +50,9 @@ class SignatureVerificater
   def optional_fetch(url)
     parsed_url = URI.parse(url)
     response = Net::HTTP.get(parsed_url, { "Accept" => "application/activity+json, application/ld+json" })
-    JSON.parse(response.to_s)
+    Oj.load(response.to_s, mode: :null)
+  rescue Oj::ParseError
+    nil
   end
 
   def account_from_key_id(key_id)
