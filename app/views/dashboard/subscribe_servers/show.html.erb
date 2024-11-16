@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @subscribe_server %>
+
+<div>
+  <%= link_to "Edit this subscribe server", edit_dashboard_subscribe_server_path(@subscribe_server) %> |
+  <%= link_to "Back to subscribe servers", dashboard_subscribe_servers_path %>
+
+  <%= button_to "Destroy this subscribe server", [:dashboard, @subscribe_server], method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+</div>
