@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "/dashboard", to: "dashboard#index"
+
   resource :inbox, only: :create
   resource :actor, only: :show
   get "/.well-known/webfinger", to: "webfinger#show"
