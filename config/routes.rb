@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :dashboard do
+    resources :subscribe_servers, only: [ :index, :show, :edit, :update, :destroy ]
+  end
+  resource :session
+  resources :passwords, param: :token
+  get "/dashboard", to: "dashboard#index"
+
   resource :inbox, only: :create
   resource :actor, only: :show
   get "/.well-known/webfinger", to: "webfinger#show"

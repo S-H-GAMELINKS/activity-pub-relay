@@ -1,4 +1,4 @@
-class ActorsController < ApplicationController
+class ActorsController < ApiController
   def show
     render json: {
       "@context": %w[https://www.w3.org/ns/activitystreams https://w3id.org/security/v1],

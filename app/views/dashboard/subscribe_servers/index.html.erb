@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Subscribe servers" %>
+
+<h1>Subscribe servers</h1>
+
+<div id="subscribe_servers">
+  <% @subscribe_servers.each do |subscribe_server| %>
+    <p>
+      <%= link_to subscribe_server.domain, [:dashboard, subscribe_server] %>
+    </p>
+  <% end %>
+</div>
+

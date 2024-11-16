@@ -1,4 +1,4 @@
-class WebfingerController < ApplicationController
+class WebfingerController < ApiController
   def show
     render json: {
       subject: "acct:relay@#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}",

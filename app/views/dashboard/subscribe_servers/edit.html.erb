@@ -1,0 +1,12 @@
+<% content_for :title, "Editing subscribe server" %>
+
+<h1>Editing subscribe server</h1>
+
+<%= render "form", subscribe_server: @subscribe_server %>
+
+<br>
+
+<div>
+  <%= link_to "Show this subscribe server", [:dashboard, @subscribe_server] %> |
+  <%= link_to "Back to subscribe servers", dashboard_subscribe_servers_path %>
+</div>
