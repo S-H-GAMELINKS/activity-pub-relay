@@ -1,4 +1,4 @@
-class InboxesController < ApplicationController
+class InboxesController < ApiController
   def create
     body = Oj.load(request.body.read.force_encoding("UTF-8"), mode: :null)
 
