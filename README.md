@@ -2,6 +2,10 @@
 
 Mastodon and Misskey(or other Misskey fork) supported ActivityPub Relay.
 
+## LICENSE
+
+[AGPL-3.0 license](./LICENSE)
+
 ## Requirements
 
 - Ruby 3.3.6
