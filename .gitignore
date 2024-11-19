@@ -36,3 +36,6 @@
 
 # Ignore actor signature key
 /config/actor.pem
+
+# Ignore coverage
+/coverage
