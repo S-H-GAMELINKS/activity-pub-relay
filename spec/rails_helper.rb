@@ -1,5 +1,16 @@
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_filter "app/controllers/application_controller.rb"
+  add_filter "app/channels/application_cable/connection.rb"
+  add_filter "app/controllers/passwords_controller.rb"
+  add_filter "app/controllers/sessions_controller.rb"
+  add_filter "app/controllers/concerns/authentication.rb"
+  add_filter "app/mailers/application_mailer.rb"
+  add_filter "app/mailers/passwords_mailer.rb"
+  add_filter "app/models/current.rb"
+  add_filter "app/models/session.rb"
+  add_filter "app/models/user.rb"
+end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
@@ -68,4 +79,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include FactoryBot::Syntax::Methods
+  config.include ActiveSupport::Testing::TimeHelpers
 end
