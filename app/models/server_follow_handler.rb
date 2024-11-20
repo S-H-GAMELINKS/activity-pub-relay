@@ -26,6 +26,6 @@ class ServerFollowHandler
 
     Rails.logger.info "#{response.code}: #{response.body}"
   rescue ActiveRecord::RecordInvalid => e
-    Rails.logger.error e.full_messages
+    Rails.logger.error e.full_message
   end
 end
