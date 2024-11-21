@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
   get "/dashboard", to: "dashboard#index"
+  mount MissionControl::Jobs::Engine, at: "/jobs"
 
   resource :inbox, only: :create
   resource :actor, only: :show

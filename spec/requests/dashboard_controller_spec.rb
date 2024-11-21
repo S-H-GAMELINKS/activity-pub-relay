@@ -2,10 +2,10 @@ require "rails_helper"
 
 RSpec.describe "/dashboard", type: :request do
   context "when user is not authenticated" do
-    it "should redirect to /session/new" do
+    it "should return 404" do
       get "/dashboard"
 
-      expect(response).to redirect_to new_session_path
+      expect(response.status).to eq 404
     end
   end
 
