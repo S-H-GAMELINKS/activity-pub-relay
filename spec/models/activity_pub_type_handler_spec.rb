@@ -12,6 +12,25 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
       end
     end
 
+    context "when json type is Undo" do
+      context "when json object type is Follow" do
+        let(:json) {
+          {
+            "type" => "Undo",
+            "object" => {
+              "type" => "Follow"
+            }
+          }
+        }
+
+        it "should return :unfollow" do
+          result = ActivityPubTypeHandler.new(json).call
+
+          expect(result).to eq :unfollow
+        end
+      end
+    end
+
     context "when json type is supported" do
       context "when signature is signed" do
         context "when to include public collection address" do
