@@ -8,6 +8,8 @@ class ActivityPubTypeHandler
   def call
     if follow?
       :follow
+    elsif unfollow?
+      :unfollow
     elsif valid_for_rebroadcast?
       :valid_for_rebroadcast
     else
@@ -19,6 +21,10 @@ class ActivityPubTypeHandler
 
   def follow?
     @json["type"] == "Follow"
+  end
+
+  def unfollow?
+    @json["type"] == "Undo" && @json["object"]["type"] == "Follow"
   end
 
   def valid_for_rebroadcast?
