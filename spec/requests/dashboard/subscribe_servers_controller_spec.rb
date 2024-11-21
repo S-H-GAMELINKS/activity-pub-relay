@@ -3,10 +3,10 @@ require "rails_helper"
 RSpec.describe "/dashboard/subscribe_servers", type: :request do
   describe "GET /dashboard/subscribe_servers" do
     context "when user is not authenticated" do
-      it "should redirect to /new/session" do
+      it "should return 404" do
         get "/dashboard/subscribe_servers"
 
-        expect(response).to redirect_to new_session_path
+        expect(response.status).to eq 404
       end
     end
 
@@ -27,10 +27,10 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     let(:subscribe_server) { create(:subscribe_server) }
 
     context "when user is not authenticated" do
-      it "should redirect to /new/session" do
+      it "should return 404" do
         get "/dashboard/subscribe_servers/#{subscribe_server.id}"
 
-        expect(response).to redirect_to new_session_path
+        expect(response.status).to eq 404
       end
     end
 
@@ -66,7 +66,7 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
       it "should redirect to /new/session" do
         get "/dashboard/subscribe_servers/#{subscribe_server.id}/edit"
 
-        expect(response).to redirect_to new_session_path
+        expect(response.status).to eq 404
       end
     end
 
@@ -99,10 +99,10 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     let(:subscribe_server) { create(:subscribe_server) }
 
     context "when user is not authenticated" do
-      it "should redirect to /new/session" do
+      it "should return 404" do
         put "/dashboard/subscribe_servers/#{subscribe_server.id}"
 
-        expect(response).to redirect_to new_session_path
+        expect(response.status).to eq 404
       end
     end
 
@@ -186,10 +186,10 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     let(:subscribe_server) { create(:subscribe_server) }
 
     context "when user is not authenticated" do
-      it "should redirect to /new/session" do
+      it "should return 404" do
         delete "/dashboard/subscribe_servers/#{subscribe_server.id}"
 
-        expect(response).to redirect_to new_session_path
+        expect(response.status).to eq 404
       end
     end
 
