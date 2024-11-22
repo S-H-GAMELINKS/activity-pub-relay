@@ -1,13 +1,15 @@
+<% require "dotenv"; Dotenv.load(".env") %>
+
 # Name of your application. Used to uniquely configure containers.
 service: activity_pub_relay
 
 # Name of the container image.
-image: your-user/activity_pub_relay
+image: <%= ENV["KAMAL_REGISTRY_USERNAME"] %>/activity_pub_relay
 
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - <%= ENV["SERVER_IP"] %>
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -19,17 +21,17 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: app.example.com
+  app_port: 3000
+  host: <%= ENV["LOCAL_DOMAIN"] %>
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: your-user
+  username: <%= ENV["KAMAL_REGISTRY_USERNAME"] %>
 
   # Always use an access token rather than real password when possible.
-  password:
-    - KAMAL_REGISTRY_PASSWORD
+  password: <%= ENV["KAMAL_REGISTRY_PASSWORD"] %>
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
@@ -51,7 +53,8 @@ env:
     # DB_HOST: 192.168.0.2
 
     # Log everything from Rails
-    # RAILS_LOG_LEVEL: debug
+    # RAILS_LOG_LEVEL: info
+    LOCAL_DOMAIN: <%= ENV["LOCAL_DOMAIN"] %>
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
@@ -88,8 +91,9 @@ builder:
   #   - RAILS_MASTER_KEY
 
 # Use a different ssh user than root
-# ssh:
-#   user: app
+ssh:
+  user: <%= ENV["SERVER_USERNAME"] %>
+  port: <%= ENV["SERVER_SSH_PORT"] %>
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
