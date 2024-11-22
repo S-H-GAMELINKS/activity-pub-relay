@@ -19,13 +19,26 @@ Thank you for these software implemented and maintained.
 - Ruby 3.3.6
 - Rails 8.0.0
 - SQLite3
+- Docker
 
 ## Deploy
+### Clone ActivityPub Relay code
+
+```console
+git clone https://github.com/S-H-GAMELINKS/activity-pub-relay.git
+```
+
+Move to clone directory.
+
+### Install Ruby and Docker
+
+Install Ruby 3.3.6 and Docker that need to deploy.
+
 ### Generate SSH Key
 
 ActivityPub Relay need SSH Key for deploy to server.
-So, you need to generate SSH Key.
-After generate SSH Key, noted Public Key value.
+So, you need to generate SSH Key in local.
+After generate SSH Key, noted Public Key value for add server.
 
 ### Setup Server
 
@@ -52,35 +65,22 @@ If you use Docker Hub, you noted Docker Hub API token(that need Read / Write per
 
 Setup to deploy configuration.
 
-```yml
-image: <Registry Account Nmae>/activity_pub_relay
+Create `.env` from `.env.sample`
 
-servers:
-  web:
-    - <Server IP Address>
-
-proxy:
-  ssl: true
-  app_port: 3000
-  host: <Server Domain>
-
-registry:
-  user: <Registry Account Name>
-  password: <Registry API Token or Registry Account Password>
-
-end:
-  secret:
-    - RAILS_MASTER_KEY
-  clear:
-    SOLID_QUEUE_IN_PUMA: true
-    LOCAL_DOMAIN: <Server Domain>
-
-ssh:
-  user: <Server User Name>
-  port: <Server SSH port>
-
+```console
+cp .env.sample .env
 ```
 
+And set value for deploy server.
+
+```
+SERVER_IP=<Server IP>
+SERVER_USERNAME=<Server Username>
+SERVER_SSH_PORT=<Server SSH Port>
+LOCAL_DOMAIN=<Server Domain>
+KAMAL_REGISTRY_USERNAME=<Registry Username>
+KAMAL_REGISTRY_PASSWORD=<Registry Password>
+```
 
 ### Deploy to server
 
