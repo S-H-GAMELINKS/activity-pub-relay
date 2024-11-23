@@ -22,6 +22,10 @@ Thank you for these software implemented and maintained.
 - Docker
 
 ## Deploy
+### Install Ruby and Docker
+
+Install Ruby 3.3.6 and Docker that need to deploy.
+
 ### Clone ActivityPub Relay code
 
 ```console
@@ -40,10 +44,6 @@ Create credentials for Kamal, and copy `secret_key_base` value.
 ```
 EDITOR=<Your Editor> bin/rails credentials:edit
 ```
-
-### Install Ruby and Docker
-
-Install Ruby 3.3.6 and Docker that need to deploy.
 
 ### Generate SSH Key
 
