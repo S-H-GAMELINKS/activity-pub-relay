@@ -56,6 +56,9 @@ env:
     # RAILS_LOG_LEVEL: info
     LOCAL_DOMAIN: <%= ENV["LOCAL_DOMAIN"] %>
 
+    # Rails secret_key_base
+    SECRET_KEY_BASE: <%= ENV["SECRET_KEY_BASE"] %>
+
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
 aliases:
