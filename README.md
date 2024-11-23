@@ -28,7 +28,18 @@ Thank you for these software implemented and maintained.
 git clone https://github.com/S-H-GAMELINKS/activity-pub-relay.git
 ```
 
-Move to clone directory.
+Move to clone directory, and run `bundle install`.
+
+```console
+bundle install
+```
+
+Create credentials for Kamal, and copy `secret_key_base` value.
+`secret_key_base` value is used in ActivityPub Relay environment variable.
+
+```
+EDITOR=<Your Editor> bin/rails credentials:edit
+```
 
 ### Install Ruby and Docker
 
@@ -49,7 +60,7 @@ Need to setup like these commands.
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y docker.io curl git
-sudo usermod -a -G docker app
+sudo usermod -a -G docker <Server Username>
 ```
 
 And, set to Public Key for SSH to server.
@@ -60,6 +71,15 @@ Kamal use Registry for deploy Dockcer image to server.
 You need to get Registry credentials.
 
 If you use Docker Hub, you noted Docker Hub API token(that need Read / Write permmision) and account name.
+
+### Load SSH key
+
+Kamal use SSH Key for deploy to server.
+So, you need load SSH Private Key.
+
+```console
+ssh-add <SSH Private Key Path>
+```
 
 ### Setup Kamal settings
 
@@ -80,6 +100,7 @@ SERVER_SSH_PORT=<Server SSH Port>
 LOCAL_DOMAIN=<Server Domain>
 KAMAL_REGISTRY_USERNAME=<Registry Username>
 KAMAL_REGISTRY_PASSWORD=<Registry Password>
+SECRET_KEY_BASE=<secret_key_base value>
 ```
 
 ### Deploy to server
