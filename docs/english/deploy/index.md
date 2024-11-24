@@ -96,3 +96,27 @@ Run `kamal deploy`.
 kamal deploy
 ```
 
+
+### Perform initial settings
+
+#### Connect to console using Kamal
+
+Run `kamal console` inside the cloned directory of your computer.
+
+```console
+kamal console
+```
+
+#### Add admin user to relay service
+
+Configure your email address and password for the service.
+
+```console
+User.create!(email_address: "<your mail address>", password: "<password for the service>")
+```
+
+#### Login from the Internet
+
+You can now login from `https://<Server Domain>/session/new` by using the email address and the password you have set right now.
+If you could login to the dashboard, initial settings are all done.
+
