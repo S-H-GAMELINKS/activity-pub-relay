@@ -99,3 +99,26 @@ kamal setup
 kamal deploy
 ```
 
+### リレーサーバの初期設定
+
+#### Kamalで本番環境のコンソールに入る
+
+手元のPCの`activity-pub-relay`ディレクトリ内で`kamal console` を実行しましょう。
+
+```console
+kamal console
+```
+
+#### 管理ユーザーを追加
+
+管理ユーザーのメールアドレスとパスワードを設定します。
+
+```console
+User.create!(email_address: "<リレーサーバ管理者のメールアドレス>", password: "<リレーサーバ用のパスワード>")
+```
+
+#### ブラウザよりログイン
+
+`https://<リレーサーバのドメイン>/session/new` にアクセスするとログイン画面が表示されます。先ほど設定したメールアドレスとパスワードでログインしてください。
+Dashboardが表示されれば、初期設定は完了です。
+
