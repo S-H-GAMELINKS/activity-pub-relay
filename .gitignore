@@ -42,3 +42,7 @@
 
 # Ignore coverage
 /coverage
+
+# Ignore Vim swap file
+*.swp
+*.swo
