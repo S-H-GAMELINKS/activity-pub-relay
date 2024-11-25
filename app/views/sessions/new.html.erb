@@ -1,11 +1,15 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<div class="container mx-auto mt-28 px-5 flex justify-center">
+  <div class="flex flex-col gap-3">
+    <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+    <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
-
-<%= link_to "Forgot password?", new_password_path %>
+    <%= form_with url: session_path, class: "flex flex-col gap-3" do |form| %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %>
+      <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password" %>
+      <%= form.submit "Sign in" %>
+    <% end %>
+    <div class="flex justify-center">
+      <%= link_to "Forgot password?", new_password_path %>
+    </div>
+  </div>
+</div>
