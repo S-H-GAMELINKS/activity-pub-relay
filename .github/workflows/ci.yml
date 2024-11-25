@@ -78,6 +78,9 @@ jobs:
       - name: Generate actor signature key
         run: bin/rails relay:keygen
 
+      - name: Build assets
+        run: bin/rails assets:precompile
+
       - name: Run tests
         env:
           RAILS_ENV: test
