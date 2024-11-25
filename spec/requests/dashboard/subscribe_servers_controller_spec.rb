@@ -11,8 +11,10 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     end
 
     context "when user is authenticated" do
+      let(:user) { create(:user) }
+
       before do
-        allow_any_instance_of(Authentication).to receive(:require_authentication).and_return(true)
+        login_as(user)
       end
 
       it "should return 200" do
@@ -35,8 +37,10 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     end
 
     context "when user is authenticated" do
+      let(:user) { create(:user) }
+
       before do
-        allow_any_instance_of(Authentication).to receive(:require_authentication).and_return(true)
+        login_as(user)
       end
 
       context "when subscribe_server is not exist" do
@@ -71,8 +75,10 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     end
 
     context "when user is authenticated" do
+      let(:user) { create(:user) }
+
       before do
-        allow_any_instance_of(Authentication).to receive(:require_authentication).and_return(true)
+        login_as(user)
       end
 
       context "when subscribe_server is not exist" do
@@ -107,8 +113,10 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     end
 
     context "when user is authenticated" do
+      let(:user) { create(:user) }
+
       before do
-        allow_any_instance_of(Authentication).to receive(:require_authentication).and_return(true)
+        login_as(user)
       end
 
       context "when subscribe_server is not exist" do
@@ -194,8 +202,10 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     end
 
     context "when user is authenticated" do
+      let(:user) { create(:user) }
+
       before do
-        allow_any_instance_of(Authentication).to receive(:require_authentication).and_return(true)
+        login_as(user)
       end
 
       it "should redirect to /dashboard/subscribe_servers" do
