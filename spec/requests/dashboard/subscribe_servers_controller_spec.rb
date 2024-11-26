@@ -133,42 +133,40 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
         context "when domain is blank" do
           before do
             put "/dashboard/subscribe_servers/#{subscribe_server.id}", params: {
-              domain: "",
-              inbox_url: "https://www.example.com/inbox"
+              subscribe_server: {
+                domain: "",
+                inbox_url: "https://www.example.com/inbox"
+              }
             }
           end
 
-          it "should return 302" do
-            expect(response.status).to eq 302
-          end
-
-          it "should redirect to /dashboard/subscribe_servers/:id" do
-            expect(response).to redirect_to dashboard_subscribe_server_path(subscribe_server)
+          it "should return 422" do
+            expect(response.status).to eq 422
           end
         end
 
         context "when inbox_url is blank" do
           before do
             put "/dashboard/subscribe_servers/#{subscribe_server.id}", params: {
-              domain: "www.example.com",
-              inbox_url: ""
+              subscribe_server: {
+                domain: "www.example.com",
+                inbox_url: ""
+              }
             }
           end
 
-          it "should return 302" do
-            expect(response.status).to eq 302
-          end
-
-          it "should redirect to /dashboard/subscribe_servers/:id" do
-            expect(response).to redirect_to dashboard_subscribe_server_path(subscribe_server)
+          it "should return 422" do
+            expect(response.status).to eq 422
           end
         end
 
         context "when domain and inbox_url are present" do
           before do
             put "/dashboard/subscribe_servers/#{subscribe_server.id}", params: {
-              domain: "www.example.com",
-              inbox_url: "https://www.example.com/inbox"
+              subscribe_server: {
+                domain: "www.example.com",
+                inbox_url: "https://www.example.com/inbox"
+              }
             }
           end
 
