@@ -11,7 +11,7 @@
 Install Ruby 3.3.6 and Docker that need to deploy.
 Recommended to use `rbenv` and other version management tools to install Ruby.
 
-### ソースコードのclone
+### Clone ActivityPub Relay code
 
 ```console
 git clone https://github.com/S-H-GAMELINKS/activity-pub-relay.git
