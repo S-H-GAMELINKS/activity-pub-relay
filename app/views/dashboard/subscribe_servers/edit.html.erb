@@ -1,12 +1,12 @@
-<% content_for :title, "Editing subscribe server" %>
+<div class="flex flex-col gap-4">
+  <% content_for :title, "Editing subscribe server" %>
 
-<h1>Editing subscribe server</h1>
+  <h1 class="text-2xl">Editing subscribe server</h1>
 
-<%= render "form", subscribe_server: @subscribe_server %>
+  <%= render "form", subscribe_server: @subscribe_server %>
 
-<br>
-
-<div>
-  <%= link_to "Show this subscribe server", [:dashboard, @subscribe_server] %> |
-  <%= link_to "Back to subscribe servers", dashboard_subscribe_servers_path %>
+  <div>
+    <%= link_to "Show this subscribe server", [:dashboard, @subscribe_server], class: "underline hover:text-cyan-500 visited:text-purple-600" %> |
+    <%= link_to "Back to subscribe servers", dashboard_subscribe_servers_path, class: "underline hover:text-cyan-500 visited:text-purple-600" %>
+  </div>
 </div>

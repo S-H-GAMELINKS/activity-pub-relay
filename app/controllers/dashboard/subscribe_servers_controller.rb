@@ -1,6 +1,8 @@
 class Dashboard::SubscribeServersController < ApplicationController
   before_action :set_subscribe_server, only: %i[ show edit update destroy ]
 
+  layout "dashboard"
+
   # GET /dashboard/subscribe_servers or /dashboard/subscribe_servers.json
   def index
     @subscribe_servers = SubscribeServer.all
@@ -45,6 +47,6 @@ class Dashboard::SubscribeServersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscribe_server_params
-      params.fetch(:subscribe_server, {})
+      params.expect(subscribe_server: [ :domain, :inbox_url ])
     end
 end

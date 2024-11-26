@@ -1,14 +1,16 @@
-<p style="color: green"><%= notice %></p>
+<div class="flex flex-col gap-3">
+  <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Subscribe servers" %>
+  <% content_for :title, "Subscribe servers" %>
 
-<h1>Subscribe servers</h1>
+  <h1 class="text-2xl">Subscribe servers</h1>
 
-<div id="subscribe_servers">
-  <% @subscribe_servers.each do |subscribe_server| %>
-    <p>
-      <%= link_to subscribe_server.domain, [:dashboard, subscribe_server] %>
-    </p>
-  <% end %>
+  <div id="subscribe_servers mt-4">
+    <% @subscribe_servers.each do |subscribe_server| %>
+      <p>
+        <%= link_to subscribe_server.domain, [:dashboard, subscribe_server], class: "underline hover:text-cyan-500 visited:text-purple-600" %>
+      </p>
+    <% end %>
+  </div>
 </div>
 
