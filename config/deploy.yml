@@ -59,6 +59,11 @@ env:
     # Rails secret_key_base
     SECRET_KEY_BASE: <%= ENV["SECRET_KEY_BASE"] %>
 
+    # ActivityPub Relay Service Links
+    TERM_OF_SERVICE_LINK: <%= ENV["TERM_OF_SERVICE_LINK"] %>
+    SOURCE_CODE_LINK: <%= ENV["SOURCE_CODE_LINK"] %>
+    ADMIN_LINKS: <%= ENV["ADMIN_LINKS"] %>
+
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
 aliases:

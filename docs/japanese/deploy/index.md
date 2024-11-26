@@ -83,6 +83,9 @@ LOCAL_DOMAIN=<サーバのドメイン>
 KAMAL_REGISTRY_USERNAME=<レジストリのアカウント名>
 KAMAL_REGISTRY_PASSWORD=<レジストリのAPIトークン>
 SECRET_KEY_BASE=<`secret_key_base`の値>
+TERM_OF_SERVICE_LINK=<利用規約へのリンク>
+SOURCE_CODE_LINK=<フォークしている場合はフォークへのリンク>
+ADMIN_LINKS=<Fediverseでのアカウントへのリンク>
 ```
 
 ### サーバへデプロイ
