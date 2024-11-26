@@ -1,10 +1,15 @@
-<div id="<%= dom_id subscribe_server %>">
-  <p>
-    domain: <%= subscribe_server.domain %>
-  </p>
+<div id="<%= dom_id subscribe_server %>" class="flex flex-col gap-3">
+  <div>
+    <h3>Domain</h3>
+    <p class="underline">
+      <%= subscribe_server.domain %>
+    </p>
+  </div>
 
-  <p>
-    inbox_url: <%= subscribe_server.inbox_url %>
-  </p>
-
+  <div>
+    <h3>Inbox URL</h3>
+    <p class="underline">
+      <%= subscribe_server.inbox_url %>
+    </p>
+  </div>
 </div>

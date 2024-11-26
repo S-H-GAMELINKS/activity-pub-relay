@@ -1,5 +1,4 @@
-Halo2
-<%= form_with(model: [:dashboard, subscribe_server]) do |form| %>
+<%= form_with(model: [:dashboard, subscribe_server], class: "flex flex-col gap-4") do |form| %>
   <% if subscribe_server.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(subscribe_server.errors.count, "error") %> prohibited this subscribe_server from being saved:</h2>
@@ -12,18 +11,18 @@ Halo2
     </div>
   <% end %>
 
-  <div>
+  <div class="flex flex-col gap-2">
     <%= form.label :domain %>
     <%= form.text_field :domain, readonly: true %>
   </div>
 
-  <div class="form-group">
+  <div class="flex flex-col gap-2">
     <%= form.label :inbox_url %>
     <%= form.text_field :inbox_url, readonly: true %>
   </div>
 
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Update", class: "border-solid border-2 border-slate-950 bg-cyan-400 text-white p-3" %>
   </div>
 <% end %>
