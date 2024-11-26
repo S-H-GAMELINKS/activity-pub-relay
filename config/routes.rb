@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "root#index"
   namespace :dashboard do
     resources :subscribe_servers, only: [ :index, :show, :edit, :update, :destroy ]
   end

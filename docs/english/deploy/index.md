@@ -78,6 +78,9 @@ LOCAL_DOMAIN=<Server Domain>
 KAMAL_REGISTRY_USERNAME=<Registry Username>
 KAMAL_REGISTRY_PASSWORD=<Registry Password>
 SECRET_KEY_BASE=<secret_key_base value>
+TERM_OF_SERVICE_LINK=<Your Term of Service Link>
+SOURCE_CODE_LINK=<Your Fork Code Link>
+ADMIN_LINKS=<Your Fedives Account>
 ```
 
 ### Deploy to server

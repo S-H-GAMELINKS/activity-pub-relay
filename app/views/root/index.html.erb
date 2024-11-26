@@ -1,0 +1,55 @@
+<div class="flex h-40 w-full bg-red-400">
+  <div class="flex justify-center items-center w-full">
+    <span class="text-6xl text-white">ActivityPub Relay</span>
+  </div>
+</div>
+
+
+<main class="flex flex-col gap-9 container mt-5 px-11">
+  <div class="flex flex-col gap-3">
+    <h2 class="text-4xl">ActivityPub Relay とは?</h2>
+    <div class="text-2xl">
+      ActivityPub対応サーバのActivityを配送するリレーサーバです。<br>
+      小規模なサーバ向けに連合を強化させることを目的として開発・運用されています。
+    </div>
+  </div>
+  <div class="flex flex-col gap-3">
+    <h2 class="text-4xl">リレーサーバへの参加</h2>
+    <div class="flex flex-col gap-4">
+      <div>
+        <h2 class="text-3xl">Mastodon の場合</h2>
+        <div class="flex flex-col gap-3">
+          <span class="text-2xl">以下のinbox urlを管理画面のリレーのページから追加してください。</span>
+          <div class="border-solid border-2 border-slate-950 p-4">
+            <%= "https://#{ENV["LOCAL_DOMAIN"]}/inbox" %>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-3xl">Misskey(Misskeyフォークを含む) の場合</h2>
+        <div class="flex flex-col gap-3">
+          <span class="text-2xl">以下のinbox urlをメニューのインスタンス/リレーのページから追加してください。</span>
+          <div class="border-solid border-2 border-slate-950 p-4">
+            <%= "https://#{ENV["LOCAL_DOMAIN"]}/inbox" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col gap-3">
+    <h2 class="text-4xl">参加中のリレーサーバ</h2>
+    <div class="p-9">
+      <ul class="list-disc">
+        <% @subscribe_server_domains.each do |subscribe_server_domain| %>
+          <li><%= link_to subscribe_server_domain, "https://#{subscribe_server_domain}" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<div class="flex flex-row gap-3 p-11">
+  <%= link_to "利用規約", ENV["TERM_OF_SERVICE_LINK"] %>
+  <%= link_to "ソースコード", ENV["SOURCE_CODE_LINK"] %>
+  <%= link_to "管理者", ENV["ADMIN_LINKS"] %>
+</div>
