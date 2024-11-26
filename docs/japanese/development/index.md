@@ -34,10 +34,10 @@ bundle install
 bin/rails db:create db:setup db:seed
 ```
 
-あとは`bin/rails s`でサーバを起動します。
+あとは`bin/dev`でサーバを起動します。
 
 ```console
-bin/rails s
+bin/dev
 ```
 
 `localhost:3000`にアクセスできればセットアップは完了です。

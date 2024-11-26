@@ -34,10 +34,10 @@ Then run `bin/rails db:create db:setup`.
 bin/rails db:create db:setup db:seed
 ```
 
-Finally, `bin/rails s` to up server.
+Finally, `bin/dev` to up server.
 
 ```console
-bin/rails s
+bin/dev
 ```
 
 You can access to `localhost:3000`, setup is done.
