@@ -4,6 +4,7 @@ RSpec.describe InboxProcessHandler, type: :model do
   describe "#call" do
     let(:activity_pub_type_handler) { instance_double(ActivityPubTypeHandler) }
     let(:server_follow_handler) { instance_double(ServerFollowHandler) }
+    let(:server_unfollow_handler) { instance_double(ServerUnfollowHandler) }
     let(:rebroadcast_handler) { instance_double(RebroadcastHandler) }
     let(:actor) { double(:actor) }
     let(:json) { double(:json) }
@@ -25,6 +26,21 @@ RSpec.describe InboxProcessHandler, type: :model do
         InboxProcessHandler.new.call(actor, json)
 
         expect(server_follow_handler).to have_received(:call).with(actor, json)
+      end
+    end
+
+    context "when activity_type is :unfollow" do
+      let(:activity_pub_type) { :unfollow }
+
+      before do
+        allow(ServerUnfollowHandler).to receive(:new).and_return(server_unfollow_handler)
+        allow(server_unfollow_handler).to receive(:call).with(actor)
+      end
+
+      it "should receive ServerUnfollowHandler#call" do
+        InboxProcessHandler.new.call(actor, json)
+
+        expect(server_unfollow_handler).to have_received(:call).with(actor)
       end
     end
 
