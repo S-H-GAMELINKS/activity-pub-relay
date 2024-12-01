@@ -1,0 +1,14 @@
+services:
+  app:
+    working_dir: /workspaces/activity-pub-relay/
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspaces/activity-pub-relay:cached
+    environment:
+      RAILS_ENV: development
+      BINDING: 0.0.0.0
+    command: sleep infinity
+    ports:
+      - '3000:3000'
