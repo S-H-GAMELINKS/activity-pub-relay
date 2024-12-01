@@ -1,0 +1,9 @@
+{
+  "name": "ActivityPub Relay development container",
+  "dockerComposeFile": "compose.yml",
+  "service": "app",
+  "forwardPorts": [3000],
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "remoteUser": "root",
+  "postCreateCommand": "bin/setup --skip-server",
+}
