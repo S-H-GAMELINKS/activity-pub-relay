@@ -74,6 +74,9 @@ GEM
       uri (>= 0.13.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    after_commit_everywhere (1.4.0)
+      activerecord (>= 4.2)
+      activesupport
     ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
@@ -286,6 +289,21 @@ GEM
     reline (0.5.11)
       io-console (~> 0.5)
     rexml (3.3.9)
+    roda (3.86.0)
+      rack
+    rodauth (2.37.0)
+      roda (>= 2.6.0)
+      sequel (>= 4)
+    rodauth-model (0.3.0)
+      rodauth (~> 2.28)
+    rodauth-rails (1.15.2)
+      bcrypt
+      railties (>= 5.0, < 8.1)
+      roda (~> 3.76)
+      rodauth (~> 2.36)
+      rodauth-model (~> 0.2)
+      sequel-activerecord_connection (~> 1.1)
+      tilt
     rspec-core (3.13.2)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
@@ -340,6 +358,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sequel (5.87.0)
+      bigdecimal
+    sequel-activerecord_connection (1.5.1)
+      activerecord (>= 5.0, < 8.1)
+      after_commit_everywhere (~> 1.1)
+      sequel (~> 5.38)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -396,6 +420,7 @@ GEM
     thruster (0.1.9-arm64-darwin)
     thruster (0.1.9-x86_64-darwin)
     thruster (0.1.9-x86_64-linux)
+    tilt (2.4.0)
     timeout (0.4.2)
     turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
@@ -452,6 +477,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 8.0.0)
   rails_live_reload
+  rodauth-rails
   rspec-rails (~> 7.1.0)
   rubocop-rails-omakase
   selenium-webdriver
