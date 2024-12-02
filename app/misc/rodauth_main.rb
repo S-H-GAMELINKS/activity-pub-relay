@@ -3,7 +3,7 @@ require "sequel/core"
 class RodauthMain < Rodauth::Rails::Auth
   configure do
     # List of authentication features that are loaded.
-    enable :login, :logout, :remember, :reset_password, :change_password
+    enable :login, :logout, :remember, :reset_password, :change_password, :otp
 
     reset_password_request_route nil
     reset_password_route nil
@@ -140,6 +140,10 @@ class RodauthMain < Rodauth::Rails::Auth
     # remember_deadline_interval Hash[days: 30]
 
     login_redirect "/dashboard"
+
+    otp_setup_redirect "/dashboard"
+    otp_lockout_redirect "/dashboard"
+    otp_disable_redirect "/dashboard"
 
     already_logged_in { redirect login_redirect }
   end
