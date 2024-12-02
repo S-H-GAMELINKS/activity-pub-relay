@@ -3,18 +3,18 @@ require "rails_helper"
 RSpec.describe "/dashboard/subscribe_servers", type: :request do
   describe "GET /dashboard/subscribe_servers" do
     context "when user is not authenticated" do
-      it "should return 404" do
+      it "should redirect /login" do
         get "/dashboard/subscribe_servers"
 
-        expect(response.status).to eq 404
+        expect(response.status).to eq 302
+        expect(response).to redirect_to "/login"
       end
     end
 
     context "when user is authenticated" do
-      let(:user) { create(:user) }
-
       before do
-        login_as(user)
+        create(:account, email: "activity-pub-relay@example.com", password: "activity-pub-relay-pass")
+        login("activity-pub-relay@example.com", "activity-pub-relay-pass")
       end
 
       it "should return 200" do
@@ -29,18 +29,18 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     let(:subscribe_server) { create(:subscribe_server) }
 
     context "when user is not authenticated" do
-      it "should return 404" do
+      it "should redirect /login" do
         get "/dashboard/subscribe_servers/#{subscribe_server.id}"
 
-        expect(response.status).to eq 404
+        expect(response.status).to eq 302
+        expect(response).to redirect_to "/login"
       end
     end
 
     context "when user is authenticated" do
-      let(:user) { create(:user) }
-
       before do
-        login_as(user)
+        create(:account, email: "activity-pub-relay@example.com", password: "activity-pub-relay-pass")
+        login("activity-pub-relay@example.com", "activity-pub-relay-pass")
       end
 
       context "when subscribe_server is not exist" do
@@ -67,18 +67,18 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     let(:subscribe_server) { create(:subscribe_server) }
 
     context "when user is not authenticated" do
-      it "should redirect to /new/session" do
+      it "should redirect to /login" do
         get "/dashboard/subscribe_servers/#{subscribe_server.id}/edit"
 
-        expect(response.status).to eq 404
+        expect(response.status).to eq 302
+        expect(response).to redirect_to "/login"
       end
     end
 
     context "when user is authenticated" do
-      let(:user) { create(:user) }
-
       before do
-        login_as(user)
+        create(:account, email: "activity-pub-relay@example.com", password: "activity-pub-relay-pass")
+        login("activity-pub-relay@example.com", "activity-pub-relay-pass")
       end
 
       context "when subscribe_server is not exist" do
@@ -105,18 +105,18 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     let(:subscribe_server) { create(:subscribe_server) }
 
     context "when user is not authenticated" do
-      it "should return 404" do
+      it "should redirect /login" do
         put "/dashboard/subscribe_servers/#{subscribe_server.id}"
 
-        expect(response.status).to eq 404
+        expect(response.status).to eq 302
+        expect(response).to redirect_to "/login"
       end
     end
 
     context "when user is authenticated" do
-      let(:user) { create(:user) }
-
       before do
-        login_as(user)
+        create(:account, email: "activity-pub-relay@example.com", password: "activity-pub-relay-pass")
+        login("activity-pub-relay@example.com", "activity-pub-relay-pass")
       end
 
       context "when subscribe_server is not exist" do
@@ -192,18 +192,18 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
     let(:subscribe_server) { create(:subscribe_server) }
 
     context "when user is not authenticated" do
-      it "should return 404" do
+      it "should redirect /login" do
         delete "/dashboard/subscribe_servers/#{subscribe_server.id}"
 
-        expect(response.status).to eq 404
+        expect(response.status).to eq 302
+        expect(response).to redirect_to "/login"
       end
     end
 
     context "when user is authenticated" do
-      let(:user) { create(:user) }
-
       before do
-        login_as(user)
+        create(:account, email: "activity-pub-relay@example.com", password: "activity-pub-relay-pass")
+        login("activity-pub-relay@example.com", "activity-pub-relay-pass")
       end
 
       it "should redirect to /dashboard/subscribe_servers" do

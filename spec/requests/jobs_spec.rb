@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe "/dashboard", type: :request do
+RSpec.describe "/jobs", type: :request do
   context "when user is not authenticated" do
     it "should return 302" do
-      get "/dashboard"
+      get "/jobs"
 
       expect(response.status).to eq 302
       expect(response).to redirect_to "/login"
@@ -17,7 +17,7 @@ RSpec.describe "/dashboard", type: :request do
     end
 
     it "should return 200" do
-      get "/dashboard"
+      get "/jobs"
 
       expect(response.status).to eq 200
     end
