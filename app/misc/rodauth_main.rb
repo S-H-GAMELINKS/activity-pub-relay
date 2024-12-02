@@ -3,10 +3,11 @@ require "sequel/core"
 class RodauthMain < Rodauth::Rails::Auth
   configure do
     # List of authentication features that are loaded.
-    enable :create_account, :verify_account, :verify_account_grace_period,
-      :login, :logout, :remember,
-      :reset_password, :change_password, :change_login, :verify_login_change,
-      :close_account
+    enable :login, :logout, :remember, :reset_password, :change_password
+
+    reset_password_request_route nil
+    reset_password_route nil
+    change_password_route nil
 
     # See the Rodauth documentation for the list of available config options:
     # http://rodauth.jeremyevans.net/documentation.html
@@ -42,9 +43,6 @@ class RodauthMain < Rodauth::Rails::Auth
 
     # Store password hash in a column instead of a separate table.
     account_password_hash_column :password_hash
-
-    # Set password when creating account instead of when verifying.
-    verify_account_set_password? false
 
     # Change some default param keys.
     login_param "email"
@@ -111,9 +109,6 @@ class RodauthMain < Rodauth::Rails::Auth
     # Or only remember users that have ticked a "Remember Me" checkbox on login.
     # after_login { remember_login if param_or_nil("remember") }
 
-    # Extend user's remember period when remembered via a cookie
-    extend_remember_deadline? true
-
     # ==> Hooks
     # Validate custom fields in the create account form.
     # before_create_account do
@@ -134,9 +129,6 @@ class RodauthMain < Rodauth::Rails::Auth
     # Redirect to home page after logout.
     logout_redirect "/"
 
-    # Redirect to wherever login redirects to after account verification.
-    verify_account_redirect { login_redirect }
-
     # Redirect to login page after password reset.
     reset_password_redirect { login_path }
 
@@ -146,5 +138,9 @@ class RodauthMain < Rodauth::Rails::Auth
     # reset_password_deadline_interval Hash[hours: 6]
     # verify_login_change_deadline_interval Hash[days: 2]
     # remember_deadline_interval Hash[days: 30]
+
+    login_redirect "/dashboard"
+
+    already_logged_in { redirect login_redirect }
   end
 end
