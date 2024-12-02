@@ -115,11 +115,12 @@ kamal console
 Configure your email address and password for the service.
 
 ```console
-User.create!(email_address: "<your mail address>", password: "<password for the service>")
+Account.create!(email: "<your mail address>", password: "<password for the service>")
+Account.last.update(status: :verified)
 ```
 
 #### Login from the Internet
 
-You can now login from `https://<Server Domain>/session/new` by using the email address and the password you have set right now.
+You can now login from `https://<Server Domain>/login` by using the email address and the password you have set right now.
 If you could login to the dashboard, initial settings are all done.
 
