@@ -124,3 +124,5 @@ Account.last.update(status: :verified)
 You can now login from `https://<Server Domain>/login` by using the email address and the password you have set right now.
 If you could login to the dashboard, initial settings are all done.
 
+If you need OTP enabled, access to `https://<Server Domain>/otp-setup`.
+Scan QR code, submit to password and  OTP number.

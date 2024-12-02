@@ -141,6 +141,10 @@ class RodauthMain < Rodauth::Rails::Auth
 
     login_redirect "/dashboard"
 
+    otp_setup_redirect "/dashboard"
+    otp_lockout_redirect "/dashboard"
+    otp_disable_redirect "/dashboard"
+
     already_logged_in { redirect login_redirect }
   end
 end
