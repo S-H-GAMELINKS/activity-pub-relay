@@ -8,6 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-unless User.exists?(email_address: "activity-pub-relay@example.com")
-  User.create!(email_address: "activity-pub-relay@example.com", password: "activity-pub-relay-pass")
+unless Account.exists?(email: "activity-pub-relay@example.com")
+  Account.create!(email: "activity-pub-relay@example.com", password: "activity-pub-relay-pass")
 end
