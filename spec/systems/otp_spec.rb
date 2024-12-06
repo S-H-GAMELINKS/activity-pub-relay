@@ -47,9 +47,12 @@ RSpec.describe "otp", type: :system do
     visit "/dashboard/subscribe_servers"
     expect(current_path).to eq "/otp-auth"
 
-    sleep(30)
+    sleep(31)
 
-    fill_in "otp", with: totp.now
+    freeze_time do
+      fill_in "otp", with: totp.now
+    end
+
     click_on "Authenticate Using TOTP"
 
     expect(current_path).to eq "/"
