@@ -5,6 +5,8 @@ class RebroadcastHandler
     activity_delivery_jobs = active_servers(domain).map { |_, inbox_url| ActivityPubDeliveryJob.new(inbox_url, json.to_json) }
 
     ActiveJob.perform_all_later(activity_delivery_jobs)
+
+    RebroadcastCounter.increment
   end
 
   private
