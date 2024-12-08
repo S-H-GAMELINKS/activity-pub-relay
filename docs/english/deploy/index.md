@@ -22,6 +22,14 @@ Create credentials for Kamal, and copy `secret_key_base` value.
 EDITOR=<Your Editor> bin/rails credentials:edit
 ```
 
+### Generate Actor Key
+
+ActivityPub Relay need Actor Key for Actor Relay that support Pleroma and Akkoma.
+
+```console
+bin/rails relay:keygen 
+```
+
 ### Generate SSH Key
 
 ActivityPub Relay need SSH Key for deploy to server.
