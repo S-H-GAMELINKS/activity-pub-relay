@@ -1,6 +1,7 @@
 # ActivityPub Relay
 
 Mastodon と Misskey(またはMisskeyフォーク) に対応したActivityPubリレーサーバです。
+またPleromaとAkkomaで利用できるActorリレーにも対応しています。
 
 ## 参考実装
 
