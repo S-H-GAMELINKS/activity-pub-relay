@@ -45,3 +45,11 @@
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
+
+# Ignore coverage
+/coverage
+
+# Ignore Vim swap file
+*.swp
+*.swo
+

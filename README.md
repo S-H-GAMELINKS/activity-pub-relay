@@ -1,6 +1,7 @@
 # ActivityPub Relay
 
 Mastodon and Misskey(or other Misskey fork) supported ActivityPub Relay.
+Also Actor Relay that support Pleroma and Akkoma.
 
 ## References
 
