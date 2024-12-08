@@ -21,6 +21,8 @@ ActivityPub Relay を実装するにあたってこれらのソフトウェア�
 - SQLite3
 - Docker
 
+RedisやNginx、PostgreSQLなどのソフトウェアは必要ありません。
+
 ## リファレンス
 - [開発ガイド](./development/index.md)
 - [デプロイ手順](./deploy/index.md)

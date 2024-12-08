@@ -21,6 +21,8 @@ Thank you for these software implemented and maintained.
 - SQLite3
 - Docker
 
+You do not need Redis, Nginx, nor PostgreSQL to deploy this Relay.
+
 ## References
 
 - [Development Guide](./development/index.md)
