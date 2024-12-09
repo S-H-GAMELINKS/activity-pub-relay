@@ -30,8 +30,8 @@ RSpec.describe "/actors", type: :request do
         "preferredUsername" => "relay",
         "inbox" => "https://www.example.com/inbox",
         "publicKey" => {
-          "id" => "https://www.example.com/#main-key",
-          "owner"=>"https://www.example.com",
+          "id" => "https://www.example.com/actor#main-key",
+          "owner"=>"https://www.example.com/actor",
           "publicKeyPem" => public_key_pem
         }
       }
