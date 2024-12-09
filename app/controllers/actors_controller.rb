@@ -7,8 +7,8 @@ class ActorsController < ApiController
       preferredUsername: "relay",
       inbox: "https://#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}/inbox",
       publicKey: {
-        id: "https://#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}/#main-key",
-        owner: "https://#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}",
+        id: "https://#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}/actor#main-key",
+        owner: "https://#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}/actor",
         publicKeyPem: Actor.key.public_key.to_pem
       }
     }, content_type: "application/activity+json"
