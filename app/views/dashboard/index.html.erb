@@ -1,2 +1,9 @@
-<h1 class="text-2xl">Dashboard</h1>
-
+<div class="flex flex-col gap-4">
+  <h1 class="text-6xl">Dashboard</h1>
+  <div class="flex flex-col gap-3">
+    <h2 class="text-4xl">公開投稿の配送数</h2>
+    <div class="p-9">
+      <%= area_chart @rebroadcast_counters %>
+    </div>
+  </div>
+</div>
