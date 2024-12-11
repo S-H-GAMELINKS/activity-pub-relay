@@ -6,6 +6,7 @@ services:
       dockerfile: .devcontainer/Dockerfile
     volumes:
       - ..:/workspaces/activity-pub-relay:cached
+    platform: linux/x86_64
     environment:
       RAILS_ENV: development
       BINDING: 0.0.0.0
