@@ -3,3 +3,7 @@ production:
     queue: background
     command: "SolidQueue::Job.clear_finished_in_batches(finished_before: 1.day.ago)"
     schedule: at 5am every day
+  retry_failed_jobs:
+    queue: background
+    command: "RetryFailedJobs.run"
+    schedule: every 15 minutes
