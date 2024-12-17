@@ -30,3 +30,4 @@ You do not need Redis, Nginx, nor PostgreSQL to deploy this Relay.
 - [Deploy](./deploy/index.md)
 - [Update](./update/index.md)
 - [Maintainance](./maintenance/index.md)
+- [Options](./option/index.md)

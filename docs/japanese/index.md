@@ -29,3 +29,4 @@ RedisやNginx、PostgreSQLなどのソフトウェアは必要ありません。
 - [デプロイ手順](./deploy/index.md)
 - [アップデート手順](./update/index.md)
 - [メンテナンス手順](./maintenance/index.md)
+- [オプション項目](./option/index.md)
