@@ -11,7 +11,7 @@ ALLOWED_HASHTAGS=#activitypub,#activitypub_relay
 
 - `#` is needed for each tag
 - Separate each tag with commas
-- Do **not** make space after commas
+- Do **not** include space before or after commas
 
 Then run `kamal deploy` to deploy the changes to your server.
 
