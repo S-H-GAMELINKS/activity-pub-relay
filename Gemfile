@@ -52,6 +52,8 @@ gem "tailwindcss-rails"
 
 # For session
 gem "rodauth-rails"
+gem "sequel-activerecord_connection"
+gem "tilt"
 
 # For OTP
 gem "rotp"

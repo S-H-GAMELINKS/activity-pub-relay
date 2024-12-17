@@ -362,6 +362,9 @@ GEM
       websocket (~> 1.0)
     sequel (5.87.0)
       bigdecimal
+    sequel-activerecord_connection (2.0.0)
+      activerecord (>= 5.0, < 8.1)
+      sequel (~> 5.38)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -418,6 +421,7 @@ GEM
     thruster (0.1.9-arm64-darwin)
     thruster (0.1.9-x86_64-darwin)
     thruster (0.1.9-x86_64-linux)
+    tilt (2.4.0)
     timeout (0.4.3)
     turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
@@ -481,6 +485,7 @@ DEPENDENCIES
   rspec-rails (~> 7.1.0)
   rubocop-rails-omakase
   selenium-webdriver
+  sequel-activerecord_connection
   simplecov
   solid_cable
   solid_cache
@@ -489,6 +494,7 @@ DEPENDENCIES
   stimulus-rails
   tailwindcss-rails
   thruster
+  tilt
   turbo-rails
   tzinfo-data
   web-console
