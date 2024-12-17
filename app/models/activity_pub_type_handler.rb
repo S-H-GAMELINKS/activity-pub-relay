@@ -28,7 +28,11 @@ class ActivityPubTypeHandler
   end
 
   def valid_for_rebroadcast?
-    signed? && addressed_to_public? && supported_type?
+    if ENV["ALLOWED_HASHTAGS"].present?
+      signed? && addressed_to_public? && supported_type? && has_allowed_hashtags?
+    else
+      signed? && addressed_to_public? && supported_type?
+    end
   end
 
   def signed?
@@ -41,5 +45,19 @@ class ActivityPubTypeHandler
 
   def supported_type?
     !(Array(@json["type"]) & %w[Create Update Delete Announce Undo]).empty?
+  end
+
+  def has_allowed_hashtags?
+    if @json["object"].present? && @json["object"]["tag"].present?
+      hashtags = @json["object"]["tag"].map do |hashtag|
+        hashtag["name"].downcase if hashtag["type"] == "Hashtag"
+      end
+
+      allowed_hashtags = ENV["ALLOWED_HASHTAGS"].split(",")
+
+      hashtags.inquiry.any?(*allowed_hashtags)
+    else
+      false
+    end
   end
 end
