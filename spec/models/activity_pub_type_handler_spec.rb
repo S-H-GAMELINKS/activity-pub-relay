@@ -33,54 +33,253 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
 
     context "when json type is supported" do
       context "when signature is signed" do
-        context "when to include public collection address" do
-          let(:json) {
-            {
-              "type" => "Create",
-              "signature" => "HTTP signature",
-              "to" => [ "https://www.w3.org/ns/activitystreams#Public" ],
-              "cc" => [ "https://www.example.com/followers" ]
+        context "when ALLOWED_HASHTAGS is blank" do
+          context "when to include public collection address" do
+            let(:json) {
+              {
+                "type" => "Create",
+                "signature" => "HTTP signature",
+                "to" => [ "https://www.w3.org/ns/activitystreams#Public" ],
+                "cc" => [ "https://www.example.com/followers" ]
+              }
             }
-          }
 
-          it "should return :valid_for_rebroadcast" do
-            result = ActivityPubTypeHandler.new(json).call
+            it "should return :valid_for_rebroadcast" do
+              result = ActivityPubTypeHandler.new(json).call
 
-            expect(result).to eq :valid_for_rebroadcast
+              expect(result).to eq :valid_for_rebroadcast
+            end
+          end
+
+          context "when cc include public collection address" do
+            let(:json) {
+              {
+                "type" => "Create",
+                "signature" => "HTTP signature",
+                "to" => [ "https://www.example.com/followers" ],
+                "cc" => [ "https://www.w3.org/ns/activitystreams#Public" ]
+              }
+            }
+
+            it "should return :valid_for_rebroadcast" do
+              result = ActivityPubTypeHandler.new(json).call
+
+              expect(result).to eq :valid_for_rebroadcast
+            end
+          end
+
+          context "when to and cc not include public collection address" do
+            let(:json) {
+              {
+                "type" => "Create",
+                "signature" => "HTTP signature",
+                "to" => [ "https://www.example.com/followers" ],
+                "cc" => [ "https://www.example.com/followers" ]
+              }
+            }
+
+            it "should return :none" do
+              result = ActivityPubTypeHandler.new(json).call
+
+              expect(result).to eq :none
+            end
           end
         end
 
-        context "when cc include public collection address" do
-          let(:json) {
-            {
-              "type" => "Create",
-              "signature" => "HTTP signature",
-              "to" => [ "https://www.example.com/followers" ],
-              "cc" => [ "https://www.w3.org/ns/activitystreams#Public" ]
-            }
-          }
-
-          it "should return :valid_for_rebroadcast" do
-            result = ActivityPubTypeHandler.new(json).call
-
-            expect(result).to eq :valid_for_rebroadcast
+        context "when ALLOWED_HASHTAGS is present" do
+          before do
+            allow(ENV).to receive(:[]).and_call_original
+            allow(ENV).to receive(:[]).with("ALLOWED_HASHTAGS").and_return("#activitypub_relay,#activitypub")
           end
-        end
 
-        context "when to and cc not include public collection address" do
-          let(:json) {
-            {
-              "type" => "Create",
-              "signature" => "HTTP signature",
-              "to" => [ "https://www.example.com/followers" ],
-              "cc" => [ "https://www.example.com/followers" ]
-            }
-          }
+          context "when not include allowed hashtags" do
+            context "when to include public collection address" do
+              let(:json) {
+                {
+                  "type" => "Create",
+                  "signature" => "HTTP signature",
+                  "to" => [ "https://www.w3.org/ns/activitystreams#Public" ],
+                  "cc" => [ "https://www.example.com/followers" ],
+                  "object" => {
+                    "tag" => [
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#mastodon"
+                      },
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#misskey"
+                      }
+                    ]
+                  }
+                }
+              }
 
-          it "should return :none" do
-            result = ActivityPubTypeHandler.new(json).call
+              it "should return :none" do
+                result = ActivityPubTypeHandler.new(json).call
 
-            expect(result).to eq :none
+                expect(result).to eq :none
+              end
+            end
+
+            context "when cc include public collection address" do
+              let(:json) {
+                {
+                  "type" => "Create",
+                  "signature" => "HTTP signature",
+                  "to" => [ "https://www.example.com/followers" ],
+                  "cc" => [ "https://www.w3.org/ns/activitystreams#Public" ],
+                  "object" => {
+                    "tag" => [
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#mastodon"
+                      },
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#misskey"
+                      }
+                    ]
+                  }
+                }
+              }
+
+              it "should return :none" do
+                result = ActivityPubTypeHandler.new(json).call
+
+                expect(result).to eq :none
+              end
+            end
+
+            context "when to and cc not include public collection address" do
+              let(:json) {
+                {
+                  "type" => "Create",
+                  "signature" => "HTTP signature",
+                  "to" => [ "https://www.example.com/followers" ],
+                  "cc" => [ "https://www.example.com/followers" ],
+                  "object" => {
+                    "tag" => [
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#mastodon"
+                      },
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#misskey"
+                      }
+                    ]
+                  }
+                }
+              }
+
+              it "should return :none" do
+                result = ActivityPubTypeHandler.new(json).call
+
+                expect(result).to eq :none
+              end
+            end
+          end
+
+          context "when include allowed hashtags" do
+            context "when to include public collection address" do
+              let(:json) {
+                {
+                  "type" => "Create",
+                  "signature" => "HTTP signature",
+                  "to" => [ "https://www.w3.org/ns/activitystreams#Public" ],
+                  "cc" => [ "https://www.example.com/followers" ],
+                  "object" => {
+                    "tag" => [
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#mastodon"
+                      },
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#activitypub_relay"
+                      }
+                    ]
+                  }
+                }
+              }
+
+              it "should return :valid_for_rebroadcast" do
+                result = ActivityPubTypeHandler.new(json).call
+
+                expect(result).to eq :valid_for_rebroadcast
+              end
+            end
+
+            context "when cc include public collection address" do
+              let(:json) {
+                {
+                  "type" => "Create",
+                  "signature" => "HTTP signature",
+                  "to" => [ "https://www.example.com/followers" ],
+                  "cc" => [ "https://www.w3.org/ns/activitystreams#Public" ],
+                  "object" => {
+                    "tag" => [
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#mastodon"
+                      },
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#activitypub_relay"
+                      }
+                    ]
+                  }
+                }
+              }
+
+              it "should return :valid_for_rebroadcast" do
+                result = ActivityPubTypeHandler.new(json).call
+
+                expect(result).to eq :valid_for_rebroadcast
+              end
+            end
+
+            context "when to and cc not include public collection address" do
+              let(:json) {
+                {
+                  "type" => "Create",
+                  "signature" => "HTTP signature",
+                  "to" => [ "https://www.example.com/followers" ],
+                  "cc" => [ "https://www.example.com/followers" ],
+                  "object" => {
+                    "tag" => [
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#mastodon"
+                      },
+                      {
+                        "type" => "Hashtag",
+                        "href" => "https://www.example.com/tags/activitypub_relay",
+                        "name" => "#activitypub_relay"
+                      }
+                    ]
+                  }
+                }
+              }
+
+              it "should return :none" do
+                result = ActivityPubTypeHandler.new(json).call
+
+                expect(result).to eq :none
+              end
+            end
           end
         end
       end
