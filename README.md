@@ -4,8 +4,9 @@ Mastodon and Misskey(or other Misskey fork) supported ActivityPub Relay.
 
 ## References
 
-[mayaeh/pub-relay-prototype](https://github.com/mayaeh/pub-relay-prototype)
-[mastoson/mastodon](https://github.com/mastodon/mastodon)
+- [mayaeh/pub-relay-prototype](https://github.com/mayaeh/pub-relay-prototype)
+- [mastoson/mastodon](https://github.com/mastodon/mastodon)
+- [dtp-mstdn-jp/selective-relay](https://github.com/dtp-mstdn-jp/selective-relay)
 
 I refereced these software codes when implementing ActivityPub Relay.
 Thank you for these software implemented and maintained.

@@ -6,6 +6,7 @@ Mastodon と Misskey(またはMisskeyフォーク) に対応したActivityPubリ
 
 - [mayaeh/pub-relay-prototype](https://github.com/mayaeh/pub-relay-prototype)
 - [mastoson/mastodon](https://github.com/mastodon/mastodon)
+- [dtp-mstdn-jp/selective-relay](https://github.com/dtp-mstdn-jp/selective-relay)
 
 ActivityPub Relay を実装するにあたってこれらのソフトウェアを参考にさせて頂きました。
 この場を借りて感謝申し上げます。
