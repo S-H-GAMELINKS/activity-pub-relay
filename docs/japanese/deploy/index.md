@@ -23,9 +23,9 @@ Kamalで利用するcredentialを作成し、`secret_key_base` の値をコピ�
 EDITOR=<Your Editor> bin/rails credentials:edit
 ```
 
-### Actorリレー用のキーを生成
+### Actorキーを生成
 
-PleromaやAkkoma向けのActorリレーで必要なキーを生成します。
+リレーで必要なActorキーを生成します。
 
 ```console
 bin/rails relay:keygen 

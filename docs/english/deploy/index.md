@@ -24,7 +24,7 @@ EDITOR=<Your Editor> bin/rails credentials:edit
 
 ### Generate Actor Key
 
-ActivityPub Relay need Actor Key for Actor Relay that support Pleroma and Akkoma.
+ActivityPub Relay need Actor Key for Actor Relay.
 
 ```console
 bin/rails relay:keygen 
