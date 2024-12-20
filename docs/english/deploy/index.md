@@ -83,6 +83,7 @@ SERVER_IP=<Server IP>
 SERVER_USERNAME=<Server Username>
 SERVER_SSH_PORT=<Server SSH Port>
 LOCAL_DOMAIN=<Server Domain>
+REPOSITORY_NAME=<Registry Repository Name>
 KAMAL_REGISTRY_USERNAME=<Registry Username>
 KAMAL_REGISTRY_PASSWORD=<Registry Password>
 SECRET_KEY_BASE=<secret_key_base value>

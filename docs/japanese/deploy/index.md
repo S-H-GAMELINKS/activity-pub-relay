@@ -88,6 +88,7 @@ SERVER_IP=<サーバの IP>
 SERVER_USERNAME=<サーバのユーザー名>
 SERVER_SSH_PORT=<サーバのSSH接続のポート>
 LOCAL_DOMAIN=<サーバのドメイン>
+REPOSITORY_NAME=<レジストリのリポジトリ名>
 KAMAL_REGISTRY_USERNAME=<レジストリのアカウント名>
 KAMAL_REGISTRY_PASSWORD=<レジストリのAPIトークン>
 SECRET_KEY_BASE=<`secret_key_base`の値>
