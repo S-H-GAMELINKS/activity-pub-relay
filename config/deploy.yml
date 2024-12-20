@@ -4,7 +4,7 @@
 service: activity_pub_relay
 
 # Name of the container image.
-image: <%= ENV["KAMAL_REGISTRY_USERNAME"] %>/activity_pub_relay
+image: <%= ENV["KAMAL_REGISTRY_USERNAME"] %>/<%= ENV["REPOSITORY_NAME"] %>
 
 # Deploy to these servers.
 servers:
