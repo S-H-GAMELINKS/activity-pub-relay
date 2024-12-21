@@ -3,10 +3,11 @@ require "rails_helper"
 RSpec.describe ActivityPubTypeHandler, type: :model do
   describe "#call" do
     context "when json type is Follow" do
+      let(:actor) { double(:actor) }
       let(:json) { { "type" => "Follow" } }
 
       it "should return :follow" do
-        result = ActivityPubTypeHandler.new(json).call
+        result = ActivityPubTypeHandler.new(actor, json).call
 
         expect(result).to eq :follow
       end
@@ -14,6 +15,7 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
 
     context "when json type is Undo" do
       context "when json object type is Follow" do
+        let(:actor) { double(:actor) }
         let(:json) {
           {
             "type" => "Undo",
@@ -24,7 +26,7 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
         }
 
         it "should return :unfollow" do
-          result = ActivityPubTypeHandler.new(json).call
+          result = ActivityPubTypeHandler.new(actor, json).call
 
           expect(result).to eq :unfollow
         end
@@ -35,6 +37,7 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
       context "when signature is signed" do
         context "when ALLOWED_HASHTAGS is blank" do
           context "when to include public collection address" do
+            let(:actor) { double(:actor) }
             let(:json) {
               {
                 "type" => "Create",
@@ -45,13 +48,14 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
             }
 
             it "should return :valid_for_rebroadcast" do
-              result = ActivityPubTypeHandler.new(json).call
+              result = ActivityPubTypeHandler.new(actor, json).call
 
               expect(result).to eq :valid_for_rebroadcast
             end
           end
 
           context "when cc include public collection address" do
+            let(:actor) { double(:actor) }
             let(:json) {
               {
                 "type" => "Create",
@@ -62,13 +66,14 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
             }
 
             it "should return :valid_for_rebroadcast" do
-              result = ActivityPubTypeHandler.new(json).call
+              result = ActivityPubTypeHandler.new(actor, json).call
 
               expect(result).to eq :valid_for_rebroadcast
             end
           end
 
           context "when to and cc not include public collection address" do
+            let(:actor) { double(:actor) }
             let(:json) {
               {
                 "type" => "Create",
@@ -78,10 +83,36 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
               }
             }
 
+            before do
+              allow(actor).to receive(:[]).with("preferredUsername").and_return("")
+            end
+
             it "should return :none" do
-              result = ActivityPubTypeHandler.new(json).call
+              result = ActivityPubTypeHandler.new(actor, json).call
 
               expect(result).to eq :none
+            end
+          end
+
+          context "when pleroma relay annouce" do
+            let(:actor) { double(:actor) }
+            let(:json) {
+              {
+                "type" => "Announce",
+                "signature" => "",
+                "to" => [ "https://www.example.com/followers" ],
+                "cc" => [ "https://www.example.com/followers" ]
+              }
+            }
+
+            before do
+              allow(actor).to receive(:[]).with("preferredUsername").and_return("relay")
+            end
+
+            it "should return :valid_for_rebroadcast" do
+              result = ActivityPubTypeHandler.new(actor, json).call
+
+              expect(result).to eq(:valid_for_rebroadcast)
             end
           end
         end
@@ -94,6 +125,7 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
 
           context "when not include allowed hashtags" do
             context "when to include public collection address" do
+              let(:actor) { double(:actor) }
               let(:json) {
                 {
                   "type" => "Create",
@@ -117,14 +149,19 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
                 }
               }
 
+              before do
+                allow(actor).to receive(:[]).with("preferredUsername").and_return("")
+              end
+
               it "should return :none" do
-                result = ActivityPubTypeHandler.new(json).call
+                result = ActivityPubTypeHandler.new(actor, json).call
 
                 expect(result).to eq :none
               end
             end
 
             context "when cc include public collection address" do
+              let(:actor) { double(:actor) }
               let(:json) {
                 {
                   "type" => "Create",
@@ -148,14 +185,19 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
                 }
               }
 
+              before do
+                allow(actor).to receive(:[]).with("preferredUsername").and_return("")
+              end
+
               it "should return :none" do
-                result = ActivityPubTypeHandler.new(json).call
+                result = ActivityPubTypeHandler.new(actor, json).call
 
                 expect(result).to eq :none
               end
             end
 
             context "when to and cc not include public collection address" do
+              let(:actor) { double(:actor) }
               let(:json) {
                 {
                   "type" => "Create",
@@ -179,8 +221,12 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
                 }
               }
 
+              before do
+                allow(actor).to receive(:[]).with("preferredUsername").and_return("")
+              end
+
               it "should return :none" do
-                result = ActivityPubTypeHandler.new(json).call
+                result = ActivityPubTypeHandler.new(actor, json).call
 
                 expect(result).to eq :none
               end
@@ -189,6 +235,7 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
 
           context "when include allowed hashtags" do
             context "when to include public collection address" do
+              let(:actor) { double(:actor) }
               let(:json) {
                 {
                   "type" => "Create",
@@ -213,13 +260,14 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
               }
 
               it "should return :valid_for_rebroadcast" do
-                result = ActivityPubTypeHandler.new(json).call
+                result = ActivityPubTypeHandler.new(actor, json).call
 
                 expect(result).to eq :valid_for_rebroadcast
               end
             end
 
             context "when cc include public collection address" do
+              let(:actor) { double(:actor) }
               let(:json) {
                 {
                   "type" => "Create",
@@ -244,13 +292,14 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
               }
 
               it "should return :valid_for_rebroadcast" do
-                result = ActivityPubTypeHandler.new(json).call
+                result = ActivityPubTypeHandler.new(actor, json).call
 
                 expect(result).to eq :valid_for_rebroadcast
               end
             end
 
             context "when to and cc not include public collection address" do
+              let(:actor) { double(:actor) }
               let(:json) {
                 {
                   "type" => "Create",
@@ -274,8 +323,12 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
                 }
               }
 
+              before do
+                allow(actor).to receive(:[]).with("preferredUsername").and_return("")
+              end
+
               it "should return :none" do
-                result = ActivityPubTypeHandler.new(json).call
+                result = ActivityPubTypeHandler.new(actor, json).call
 
                 expect(result).to eq :none
               end
@@ -285,6 +338,7 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
       end
 
       context "when signature is not signed" do
+        let(:actor) { double(:actor) }
         let(:json) {
           {
             "type" => "Create",
@@ -292,8 +346,12 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
           }
         }
 
+        before do
+          allow(actor).to receive(:[]).with("preferredUsername").and_return("")
+        end
+
         it "should return :none" do
-          result = ActivityPubTypeHandler.new(json).call
+          result = ActivityPubTypeHandler.new(actor, json).call
 
           expect(result).to eq :none
         end
@@ -301,6 +359,7 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
     end
 
     context "when json type is not supported" do
+      let(:actor) { double(:actor) }
       let(:json) {
         {
           "type" => "Like",
@@ -309,8 +368,12 @@ RSpec.describe ActivityPubTypeHandler, type: :model do
         }
       }
 
+      before do
+        allow(actor).to receive(:[]).and_return("")
+      end
+
       it "should return :none" do
-        result = ActivityPubTypeHandler.new(json).call
+        result = ActivityPubTypeHandler.new(actor, json).call
 
         expect(result).to eq :none
       end

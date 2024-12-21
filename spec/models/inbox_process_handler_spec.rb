@@ -10,7 +10,7 @@ RSpec.describe InboxProcessHandler, type: :model do
     let(:json) { double(:json) }
 
     before do
-      allow(ActivityPubTypeHandler).to receive(:new).with(json).and_return(activity_pub_type_handler)
+      allow(ActivityPubTypeHandler).to receive(:new).with(actor, json).and_return(activity_pub_type_handler)
       allow(activity_pub_type_handler).to receive(:call).and_return(activity_pub_type)
     end
 

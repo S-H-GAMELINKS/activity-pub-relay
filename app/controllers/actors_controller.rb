@@ -6,6 +6,7 @@ class ActorsController < ApiController
       type: "Service",
       preferredUsername: "relay",
       inbox: "https://#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}/inbox",
+      url: "https://#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}/actor",
       publicKey: {
         id: "https://#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}/actor#main-key",
         owner: "https://#{ENV.fetch("LOCAL_DOMAIN", "www.example.com")}/actor",
