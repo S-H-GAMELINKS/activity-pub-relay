@@ -1,7 +1,8 @@
 class ActivityPubTypeHandler
   PUBLIC_COLLECTION = "https://www.w3.org/ns/activitystreams#Public"
 
-  def initialize(json)
+  def initialize(actor, json)
+    @actor = actor
     @json = json
   end
 
@@ -11,6 +12,8 @@ class ActivityPubTypeHandler
     elsif unfollow?
       :unfollow
     elsif valid_for_rebroadcast?
+      :valid_for_rebroadcast
+    elsif pleroma_relay_announce?
       :valid_for_rebroadcast
     else
       :none
@@ -59,5 +62,9 @@ class ActivityPubTypeHandler
     else
       false
     end
+  end
+
+  def pleroma_relay_announce?
+    @actor["preferredUsername"] == "relay" && @json["type"] == "Announce"
   end
 end

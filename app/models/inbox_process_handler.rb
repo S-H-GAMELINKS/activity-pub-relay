@@ -1,6 +1,6 @@
 class InboxProcessHandler
   def call(actor, json)
-    activity_pub_type = ActivityPubTypeHandler.new(json).call
+    activity_pub_type = ActivityPubTypeHandler.new(actor, json).call
 
     case activity_pub_type
     when :follow
