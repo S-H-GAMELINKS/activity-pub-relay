@@ -9,18 +9,18 @@ class PleromaFollowHandler
 
     response = send_accept_activity(inbox_url)
 
-    return unless response.code == "200"
-
     Rails.logger.info "#{response.code}: #{response.body}"
 
+    return unless response.code == "200"
+
     response = send_follow_activity(inbox_url)
+
+    Rails.logger.info "#{response.code}: #{response.body}"
 
     if response.code == "200"
       domain = URI.parse(@actor["id"]).normalize.host
       SubscribeServer.create!(domain:, inbox_url:)
     end
-
-    Rails.logger.info "#{response.code}: #{response.body}"
   rescue ActiveRecord::RecordInvalid => e
     Rails.logger.error e.full_message
   end

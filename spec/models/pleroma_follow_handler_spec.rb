@@ -36,8 +36,8 @@ RSpec.describe PleromaFollowHandler, type: :model do
         }.not_to change { SubscribeServer.count }
       end
 
-      it "should not loged" do
-        expect(Rails.logger).not_to receive(:info)
+      it "should loged" do
+        expect(Rails.logger).to receive(:info)
 
         PleromaFollowHandler.new(actor, json).call
       end
