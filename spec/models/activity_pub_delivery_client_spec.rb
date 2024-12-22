@@ -10,7 +10,7 @@ RSpec.describe ActivityPubDeliveryClient, type: :model do
         'Host': "www.example.com",
         'Date': Time.now.utc.httpdate,
         'Digest': "SHA-256=UEf3Gb+7KoVuTocInGSJWg3IbPqbinwd7EYfbFFiZKQ=",
-        'Signature': "keyId=\"https://www.example.com/actor\",algorithm=\"rsa-sha256\",headers=\"(request-target) host date digest\",signature=\"#{signature}\"",
+        'Signature': "keyId=\"https://www.example.com/actor#main-key\",algorithm=\"rsa-sha256\",headers=\"(request-target) host date digest\",signature=\"#{signature}\"",
         'User-Agent': "activity-pub-relay",
         'Content-Type': "application/ld+json;profile=\"https://www.w3.org/ns/activitystreams\""
       }

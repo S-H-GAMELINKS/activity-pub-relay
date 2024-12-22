@@ -56,6 +56,6 @@ class ActivityPubDeliveryClient
   end
 
   def header
-    "keyId=\"#{actor_url}\",algorithm=\"rsa-sha256\",headers=\"(request-target) host date digest\",signature=\"#{signature}\""
+    "keyId=\"#{actor_url}#main-key\",algorithm=\"rsa-sha256\",headers=\"(request-target) host date digest\",signature=\"#{signature}\""
   end
 end
