@@ -11,7 +11,7 @@ class NodeinfoController < ApiController
       },
       "software" => {
         "name" => "activity-pub-relay",
-        "version" => "0.7.0",
+        "version" => "0.7.2",
         "repository" => "https://github.com/S-H-GAMELINKS/activity-pub-relay"
       },
       "usage" => {
