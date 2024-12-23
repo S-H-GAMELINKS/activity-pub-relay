@@ -65,7 +65,7 @@ env:
     ADMIN_LINKS: <%= ENV["ADMIN_LINKS"] %>
 
     # Use Hashtag Relay Option
-    ALLOWED_HASHTAGS: <%= ENV["ALLOWED_HASHTAGS"] %>
+    ALLOWED_HASHTAGS: "<%= ENV["ALLOWED_HASHTAGS"] %>"
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
