@@ -47,6 +47,6 @@ class Dashboard::SubscribeServersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscribe_server_params
-      params.expect(subscribe_server: [ :domain, :inbox_url ])
+      params.expect(subscribe_server: [ :domain, :inbox_url, :delivery_suspend ])
     end
 end

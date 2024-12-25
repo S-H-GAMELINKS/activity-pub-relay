@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_02_135932) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_25_032244) do
   create_table "account_login_change_keys", force: :cascade do |t|
     t.string "key", null: false
     t.string "login", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_02_135932) do
     t.integer "status", default: 1, null: false
     t.string "email", null: false
     t.string "password_hash"
-    t.index ["email"], name: "index_accounts_on_email", unique: true, where: "status IN (1, 2) /*application='ActivityPubRelay'*/ /*application='ActivityPubRelay'*/ /*application='ActivityPubRelay'*/ /*application='ActivityPubRelay'*/"
+    t.index ["email"], name: "index_accounts_on_email", unique: true, where: "status IN (1, 2)"
   end
 
   create_table "subscribe_servers", force: :cascade do |t|
@@ -52,6 +52,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_02_135932) do
     t.string "inbox_url", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "delivery_suspend", default: false, null: false
     t.index ["domain"], name: "index_subscribe_servers_on_domain", unique: true
   end
 

@@ -135,7 +135,8 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
             put "/dashboard/subscribe_servers/#{subscribe_server.id}", params: {
               subscribe_server: {
                 domain: "",
-                inbox_url: "https://www.example.com/inbox"
+                inbox_url: "https://www.example.com/inbox",
+                delivery_suspend: false
               }
             }
           end
@@ -150,7 +151,8 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
             put "/dashboard/subscribe_servers/#{subscribe_server.id}", params: {
               subscribe_server: {
                 domain: "www.example.com",
-                inbox_url: ""
+                inbox_url: "",
+                delivery_suspend: false
               }
             }
           end
@@ -160,12 +162,13 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
           end
         end
 
-        context "when domain and inbox_url are present" do
+        context "when domain and inbox_url are present. also correct delivery_suspend is set" do
           before do
             put "/dashboard/subscribe_servers/#{subscribe_server.id}", params: {
               subscribe_server: {
                 domain: "www.example.com",
-                inbox_url: "https://www.example.com/inbox"
+                inbox_url: "https://www.example.com/inbox",
+                delivery_suspend: true
               }
             }
           end
