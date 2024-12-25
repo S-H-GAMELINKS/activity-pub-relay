@@ -21,6 +21,10 @@
     <%= form.text_field :inbox_url, readonly: true %>
   </div>
 
+  <div class="flex flex-col gap-2">
+    <%= form.label :delivery_suspend %>
+    <%= form.checkbox :delivery_suspend %>
+  </div>
 
   <div>
     <%= form.submit "Update", class: "border-solid border-2 border-slate-950 bg-cyan-400 text-white p-3" %>
