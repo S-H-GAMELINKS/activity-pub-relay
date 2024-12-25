@@ -2,7 +2,7 @@ class RebroadcastHandler
   def call(actor, json)
     domain = URI.parse(actor["id"]).normalize.host
 
-    activity_delivery_jobs = active_servers(domain).map do |_, inbox_url|
+    activity_delivery_jobs = active_servers(domain).map do |_, inbox_url, _|
       ActivityPubDeliveryJob.new(inbox_url, announce_json(json["object"]))
     end
 
