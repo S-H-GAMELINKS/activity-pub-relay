@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_25_032244) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_26_041309) do
   create_table "account_login_change_keys", force: :cascade do |t|
     t.string "key", null: false
     t.string "login", null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_25_032244) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "delivery_suspend", default: false, null: false
+    t.boolean "domain_block", default: false, null: false
     t.index ["domain"], name: "index_subscribe_servers_on_domain", unique: true
   end
 
