@@ -26,6 +26,11 @@
     <%= form.checkbox :delivery_suspend %>
   </div>
 
+  <div class="flex flex-col gap-2">
+    <%= form.label :domain_block %>
+    <%= form.checkbox :domain_block %>
+  </div>
+
   <div>
     <%= form.submit "Update", class: "border-solid border-2 border-slate-950 bg-cyan-400 text-white p-3" %>
   </div>
