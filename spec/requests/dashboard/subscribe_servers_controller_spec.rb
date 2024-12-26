@@ -162,13 +162,14 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
           end
         end
 
-        context "when domain and inbox_url are present. also correct delivery_suspend is set" do
+        context "when all params is set" do
           before do
             put "/dashboard/subscribe_servers/#{subscribe_server.id}", params: {
               subscribe_server: {
                 domain: "www.example.com",
                 inbox_url: "https://www.example.com/inbox",
-                delivery_suspend: true
+                delivery_suspend: true,
+                domain_block: true
               }
             }
           end
@@ -179,6 +180,14 @@ RSpec.describe "/dashboard/subscribe_servers", type: :request do
 
           it "should redirect to /dashboard/subscribe_servers/:id" do
             expect(response).to redirect_to dashboard_subscribe_server_path(subscribe_server)
+          end
+
+          it "should update delivery_suspend" do
+            expect(subscribe_server.reload.delivery_suspend).to be true
+          end
+
+          it "should update domain_block" do
+            expect(subscribe_server.reload.domain_block).to be true
           end
         end
       end
