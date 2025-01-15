@@ -1,14 +1,14 @@
 # Development Guide
 ## Requirements
 
-- Ruby 3.3.6
+- Ruby 3.4.1
 - Rails 8
 - SQLite3
 
 ## Setup
 ### Install Ruby and Docker
 
-Install Ruby 3.3.6 and Docker that need to deploy.
+Install Ruby 3.4.1 and Docker that need to deploy.
 Recommended to use `rbenv` and other version management tools to install Ruby.
 
 ### Clone ActivityPub Relay code
