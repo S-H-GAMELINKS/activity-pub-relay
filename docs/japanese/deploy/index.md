@@ -2,7 +2,7 @@
 ## デプロイ手順
 ### Ruby と Docker をインストール
 
-Ruby 3.3.6 とDocker をインストールしてください。
+Ruby 3.4.1 とDocker をインストールしてください。
 
 ### ActivityPub Relay のコードをclone
 
