@@ -24,8 +24,12 @@ RSpec.describe "otp", type: :system do
     fill_in "otp", with: totp.now
     click_on "Setup TOTP Authentication"
 
+    expect(page).to have_current_path("/dashboard")
+    expect(page).to have_content("OTP settings")
+
     visit "/logout"
 
+    expect(page).to have_current_path("/logout")
     expect(page).to have_css('form', wait: 5)
 
     within('form') do
@@ -78,8 +82,11 @@ RSpec.describe "otp", type: :system do
     fill_in "password", with: "activity-pub-relay-pass"
     click_on "Disable TOTP Authentication"
 
+    expect(page).to have_current_path("/dashboard")
+
     visit "/logout"
 
+    expect(page).to have_current_path("/logout")
     expect(page).to have_css('form', wait: 5)
 
     within('form') do
