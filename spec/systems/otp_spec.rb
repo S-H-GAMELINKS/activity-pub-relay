@@ -25,7 +25,22 @@ RSpec.describe "otp", type: :system do
     click_on "Setup TOTP Authentication"
 
     visit "/logout"
-    click_on "Logout"
+
+    if page.has_css?('form')
+      within('form') do
+        if page.has_css?('input[type="submit"]')
+          find('input[type="submit"]').click
+        elsif page.has_css?('button[type="submit"]')
+          find('button[type="submit"]').click
+        elsif page.has_css?('button')
+          find('button').click
+        else
+          page.execute_script('document.forms[0].submit();')
+        end
+      end
+    else
+      page.execute_script('window.location.href = "/";')
+    end
 
     visit "/login"
 
@@ -73,7 +88,22 @@ RSpec.describe "otp", type: :system do
     click_on "Disable TOTP Authentication"
 
     visit "/logout"
-    click_on "Logout"
+
+    if page.has_css?('form')
+      within('form') do
+        if page.has_css?('input[type="submit"]')
+          find('input[type="submit"]').click
+        elsif page.has_css?('button[type="submit"]')
+          find('button[type="submit"]').click
+        elsif page.has_css?('button')
+          find('button').click
+        else
+          page.execute_script('document.forms[0].submit();')
+        end
+      end
+    else
+      page.execute_script('window.location.href = "/";')
+    end
 
     visit "/login"
 
