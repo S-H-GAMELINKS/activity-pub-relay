@@ -93,8 +93,8 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: screenshots
-          path: ${{ github.workspace }}/tmp/screenshots
+          name: rspec-screenshots
+          path: ${{ github.workspace }}/tmp/capybara/
           if-no-files-found: ignore
 
       - uses: sarisia/actions-status-discord@v1
