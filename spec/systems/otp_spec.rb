@@ -25,6 +25,9 @@ RSpec.describe "otp", type: :system do
     click_on "Setup TOTP Authentication"
 
     visit "/logout"
+
+    sleep(3)
+
     click_on "Logout"
 
     visit "/login"
