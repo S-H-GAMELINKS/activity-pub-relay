@@ -24,8 +24,18 @@ RSpec.describe "otp", type: :system do
     fill_in "otp", with: totp.now
     click_on "Setup TOTP Authentication"
 
+    expect(page).to have_current_path("/dashboard")
+    expect(page).to have_content("OTP settings")
+
     visit "/logout"
-    click_on "Logout"
+
+    expect(page).to have_current_path("/logout")
+    expect(page).to have_css('form', wait: 5)
+
+    within('form') do
+      submit_button = find('input[type="submit"], button[type="submit"], button', match: :first)
+      submit_button.click
+    end
 
     visit "/login"
 
@@ -72,8 +82,17 @@ RSpec.describe "otp", type: :system do
     fill_in "password", with: "activity-pub-relay-pass"
     click_on "Disable TOTP Authentication"
 
+    expect(page).to have_current_path("/dashboard")
+
     visit "/logout"
-    click_on "Logout"
+
+    expect(page).to have_current_path("/logout")
+    expect(page).to have_css('form', wait: 5)
+
+    within('form') do
+      submit_button = find('input[type="submit"], button[type="submit"], button', match: :first)
+      submit_button.click
+    end
 
     visit "/login"
 
