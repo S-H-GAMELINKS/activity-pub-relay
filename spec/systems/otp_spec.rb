@@ -26,9 +26,12 @@ RSpec.describe "otp", type: :system do
 
     visit "/logout"
 
-    sleep(3)
+    expect(page).to have_css('form', wait: 5)
 
-    click_on "Logout"
+    within('form') do
+      submit_button = find('input[type="submit"], button[type="submit"], button', match: :first)
+      submit_button.click
+    end
 
     visit "/login"
 
@@ -76,7 +79,13 @@ RSpec.describe "otp", type: :system do
     click_on "Disable TOTP Authentication"
 
     visit "/logout"
-    click_on "Logout"
+
+    expect(page).to have_css('form', wait: 5)
+
+    within('form') do
+      submit_button = find('input[type="submit"], button[type="submit"], button', match: :first)
+      submit_button.click
+    end
 
     visit "/login"
 
