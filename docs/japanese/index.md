@@ -18,7 +18,7 @@ ActivityPub Relay を実装するにあたってこれらのソフトウェア�
 
 ## 必要なソフトウェアなど
 
-- Ruby 3.4.1
+- Ruby 4.0.9
 - Rails 8.0.0
 - SQLite3
 - Docker
