@@ -18,7 +18,7 @@ Thank you for these software implemented and maintained.
 
 ## Requirements
 
-- Ruby 4.0.9
+- Ruby 4.0.10
 - Rails 8.0.0
 - SQLite3
 - Docker

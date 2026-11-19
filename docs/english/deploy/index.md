@@ -1,7 +1,7 @@
 ## Deploy
 ### Install Ruby and Docker
 
-Install Ruby 4.0.9 and Docker that need to deploy.
+Install Ruby 4.0.10 and Docker that need to deploy.
 
 ### Clone ActivityPub Relay code
 

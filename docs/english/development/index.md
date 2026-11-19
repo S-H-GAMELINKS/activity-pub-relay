@@ -1,14 +1,14 @@
 # Development Guide
 ## Requirements
 
-- Ruby 4.0.9
+- Ruby 4.0.10
 - Rails 8
 - SQLite3
 
 ## Setup
 ### Install Ruby and Docker
 
-Install Ruby 4.0.9 and Docker that need to deploy.
+Install Ruby 4.0.10 and Docker that need to deploy.
 Recommended to use `rbenv` and other version management tools to install Ruby.
 
 ### Clone ActivityPub Relay code
